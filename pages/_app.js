@@ -3,13 +3,14 @@ import Head from "next/head";
 import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Container, Typography, Box } from "@mui/material";
+import { withLDProvider } from "launchdarkly-react-client-sdk";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import "styles/global.css";
 
 const theme = createTheme();
 
-export default function TodosApp({ Component, pageProps }) {
+function TodosApp({ Component, pageProps }) {
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
@@ -47,6 +48,15 @@ export default function TodosApp({ Component, pageProps }) {
     </>
   );
 }
+
+// Initialize LaunchDarkly
+export default withLDProvider({
+  clientSideID: "617ff920075461209fea0de0",
+  user: {
+    key: null,
+    anonymous: true,
+  },
+})(TodosApp);
 
 export async function getInitialProps(appContext) {
   return {

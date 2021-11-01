@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { Button, Container } from "@mui/material";
+import { useFlags } from "launchdarkly-react-client-sdk";
 
 import AddTodo from "components/AddTodo";
 import TodoList from "components/TodoList";
@@ -7,6 +8,7 @@ import TodoList from "components/TodoList";
 import useTodos from "hooks/useTodods";
 
 export default function Index() {
+  const flags = useFlags();
   const [todos, handlers] = useTodos();
 
   return (
@@ -19,7 +21,7 @@ export default function Index() {
 
       <Container maxWidth="md">
         <AddTodo addTodo={handlers.addTodo} />
-        {todos.length >= 2 && (
+        {flags.clearTodos && todos.length >= 2 && (
           <Button variant="outlined" color="error" onClick={handlers.clearTodos}>
             Clear all todos
           </Button>
