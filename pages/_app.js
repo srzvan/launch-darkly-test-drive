@@ -1,16 +1,15 @@
 import App from "next/app";
 import Head from "next/head";
-import Image from "next/image";
 import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Container, Typography, Grid, Box } from "@mui/material";
+import { Container, Typography, Box } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import "styles/global.css";
 
 const theme = createTheme();
 
-export default function MyApp({ Component, pageProps }) {
+export default function TodosApp({ Component, pageProps }) {
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
@@ -37,33 +36,11 @@ export default function MyApp({ Component, pageProps }) {
             <main>
               <Component {...pageProps} />
             </main>
-            <Grid
-              container
-              direction="column"
-              component="footer"
-              justifyContent="center"
-              align="center"
-              gap=".75rem"
-              style={{ padding: "1rem .75rem" }}
-            >
-              <Grid item>
-                <Typography variant="body2">
-                  Made with <code>love</code> by Răzvan Sbîngu
-                </Typography>
-              </Grid>
-              <Grid item>
-                <a
-                  href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Powered by{" "}
-                  <Typography component="span">
-                    <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-                  </Typography>
-                </a>
-              </Grid>
-            </Grid>
+            <Typography variant="body2" align="center" sx={{ padding: "1rem .75rem" }}>
+              Made with{" "}
+              <code style={{ color: theme.palette.error.main, fontWeight: theme.typography.fontWeightBold }}>love</code>{" "}
+              by Răzvan Sbîngu
+            </Typography>
           </Box>
         </Container>
       </ThemeProvider>

@@ -1,7 +1,14 @@
 import Head from "next/head";
-import { Typography } from "@mui/material";
+import { Button, Container } from "@mui/material";
+
+import AddTodo from "components/AddTodo";
+import TodoList from "components/TodoList";
+
+import useTodos from "hooks/useTodods";
 
 export default function Index() {
+  const [todos, handlers] = useTodos();
+
   return (
     <>
       <Head>
@@ -10,7 +17,15 @@ export default function Index() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Typography>Testing 1, 2, 3...</Typography>
+      <Container maxWidth="md">
+        <AddTodo addTodo={handlers.addTodo} />
+        {todos.length >= 2 && (
+          <Button variant="outlined" color="error" onClick={handlers.clearTodos}>
+            Clear all todos
+          </Button>
+        )}
+        <TodoList todos={todos} handlers={handlers} />
+      </Container>
     </>
   );
 }
