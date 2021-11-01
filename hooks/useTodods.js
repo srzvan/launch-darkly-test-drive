@@ -3,7 +3,8 @@ import * as React from "react";
 const actions = {
   ADD_TODO: "ADD_TODO",
   DELETE_TODO: "DELETE_TODO",
-  COMPLETE_TODO: "COMPLETE_TODO",
+  CHECK_TODO: "CHECK_TODO",
+  UNCHECK_TODO: "UNCHECK_TODO",
   CLEAR_TODOS: "CLEAR_TODOS",
 };
 
@@ -19,11 +20,17 @@ function reducer(state, action) {
 
       return [...state.slice(0, index), ...state.slice(index + 1)];
     }
-    case actions.COMPLETE_TODO: {
+    case actions.CHECK_TODO:
+    case actions.UNCHECK_TODO: {
       const id = action.payload.id;
       const index = state.findIndex(todo => todo.id === id);
+      const isCheckAction = action.type === actions.CHECK_TODO;
 
-      return [...state.slice(0, index), { ...state[index], isCompleted: true }, ...state.slice(index + 1)];
+      return [
+        ...state.slice(0, index),
+        { ...state[index], isChecked: isCheckAction ? true : false },
+        ...state.slice(index + 1),
+      ];
     }
     case actions.CLEAR_TODOS:
       return initialState;
@@ -39,7 +46,8 @@ export default function useTodos() {
     () => ({
       addTodo: todo => dispatch({ type: actions.ADD_TODO, payload: todo }),
       deleteTodo: id => dispatch({ type: actions.DELETE_TODO, payload: { id } }),
-      completeTodo: id => dispatch({ type: actions.COMPLETE_TODO, payload: { id } }),
+      checkTodo: id => dispatch({ type: actions.CHECK_TODO, payload: { id } }),
+      uncheckTodo: id => dispatch({ type: actions.UNCHECK_TODO, payload: { id } }),
       clearTodos: () => dispatch({ type: actions.CLEAR_TODOS }),
     }),
     []
