@@ -6,10 +6,8 @@ export default function TodoItem({ todo, handlers }) {
 
   const flags = useFlags();
 
-  console.log(flags);
-
   return (
-    <ListItem>
+    <ListItem style={{ alignItems: "flex-start" }}>
       <ListItemIcon>{todo.isChecked && <Icon>check</Icon>}</ListItemIcon>
       <ListItemText style={{ textDecoration: todo.isChecked ? "line-through" : null }}>{todo.text}</ListItemText>
       {flags.checkTodo && (

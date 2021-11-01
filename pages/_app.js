@@ -28,7 +28,7 @@ function TodosApp({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Container maxWidth="lg" sx={{ minHeight: "100vh" }}>
-          <Box sx={{ minHeight: "100vh", display: "grid", gridTemplateRows: "auto 1fr auto", gap: ".5rem" }}>
+          <Box sx={{ minHeight: "100vh", display: "grid", gridTemplateRows: "auto 1fr auto", gap: "2.5rem" }}>
             <header>
               <Typography variant="h1" align="center">
                 A boring notes taking app

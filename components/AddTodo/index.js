@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TextField, Button, Icon, Grid } from "@mui/material";
+import { TextField, Button, Icon } from "@mui/material";
 
 export default function AddTodo({ addTodo }) {
   const [value, setValue] = React.useState("");
@@ -21,25 +21,11 @@ export default function AddTodo({ addTodo }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Grid container alignItems="center" gap=".5rem" direction="column">
-        <Grid item xs>
-          <TextField
-            multiline
-            fullWidth
-            id="add-todo"
-            label="Add todo"
-            value={value}
-            onChange={handleChange}
-            InputProps={{ startAdornment: <Icon>description</Icon> }}
-          />
-        </Grid>
-        <Grid item>
-          <Button variant="outlined" type="submit">
-            Add <Icon>add</Icon>
-          </Button>
-        </Grid>
-      </Grid>
+    <form onSubmit={handleSubmit} style={{ textAlign: "center", marginBottom: "1rem" }}>
+      <TextField multiline fullWidth id="add-todo" label="Todo text" value={value} onChange={handleChange} />
+      <Button variant="outlined" type="submit" endIcon={<Icon>add</Icon>} style={{ marginTop: ".5rem" }}>
+        Create todo
+      </Button>
     </form>
   );
 }
