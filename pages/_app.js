@@ -2,9 +2,10 @@ import App from "next/app";
 import Head from "next/head";
 import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Container, Typography, Box } from "@mui/material";
 import { withLDProvider } from "launchdarkly-react-client-sdk";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+import Layout from "components/Layout";
 
 import "styles/global.css";
 
@@ -27,23 +28,9 @@ function TodosApp({ Component, pageProps }) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Container maxWidth="lg" sx={{ minHeight: "100vh" }}>
-          <Box sx={{ minHeight: "100vh", display: "grid", gridTemplateRows: "auto 1fr auto", gap: "2.5rem" }}>
-            <header>
-              <Typography variant="h1" align="center">
-                A boring notes taking app
-              </Typography>
-            </header>
-            <main>
-              <Component {...pageProps} />
-            </main>
-            <Typography variant="body2" align="center" sx={{ padding: "1rem .75rem" }}>
-              Made with{" "}
-              <code style={{ color: theme.palette.error.main, fontWeight: theme.typography.fontWeightBold }}>love</code>{" "}
-              by Răzvan Sbîngu
-            </Typography>
-          </Box>
-        </Container>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </ThemeProvider>
     </>
   );
