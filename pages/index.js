@@ -1,12 +1,11 @@
 import Head from "next/head";
-import { Chip, Typography, Button, Container } from "@mui/material";
 import { useFlags } from "launchdarkly-react-client-sdk";
+import { Box, Chip, Typography, Button, Container } from "@mui/material";
+
+import useTodos from "hooks/useTodods";
 
 import AddTodo from "components/AddTodo";
 import TodoList from "components/TodoList";
-
-import useTodos from "hooks/useTodods";
-import { Box } from "@mui/system";
 
 export default function Index() {
   const flags = useFlags();

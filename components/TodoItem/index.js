@@ -9,7 +9,7 @@ export default function TodoItem({ todo, handlers }) {
   return (
     <ListItem style={{ alignItems: "flex-start" }}>
       <ListItemIcon>{todo.isChecked && <Icon>check</Icon>}</ListItemIcon>
-      <ListItemText style={{ textDecoration: todo.isChecked ? "line-through" : null }}>{todo.text}</ListItemText>
+      <ListItemText style={{ textDecoration: todo.isChecked ? "line-through" : null }} primary={todo.text} />
       {flags.checkTodo && (
         <IconButton onClick={() => (todo.isChecked ? uncheckTodo(todo.id) : checkTodo(todo.id))}>
           <Icon color={todo.isChecked ? "info" : "success"}>{todo.isChecked ? "undo" : "task_alt"}</Icon>
