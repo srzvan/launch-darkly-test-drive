@@ -23,7 +23,7 @@ export default function AddTodo({ addTodo }) {
   return (
     <form onSubmit={handleSubmit} style={{ textAlign: "center", marginBottom: "1rem" }}>
       <TextField multiline fullWidth id="add-todo" label="Todo text" value={value} onChange={handleChange} />
-      <Button variant="outlined" type="submit" endIcon={<Icon>add</Icon>} style={{ marginTop: ".5rem" }}>
+      <Button variant="outlined" type="submit" endIcon={<Icon>add</Icon>} sx={{ marginTop: ".75rem" }}>
         Create todo
       </Button>
     </form>

@@ -27,8 +27,8 @@ export default function Index() {
 
       <Container maxWidth="md">
         <AddTodo addTodo={handlers.addTodo} />
-        {flags.clearTodos && todos.length >= 2 && (
-          <Button variant="outlined" color="error" onClick={handlers.clearTodos}>
+        {flags.clearTodos && (
+          <Button variant="outlined" color="error" disabled={todos.length < 2} onClick={handlers.clearTodos}>
             Clear all todos
           </Button>
         )}
